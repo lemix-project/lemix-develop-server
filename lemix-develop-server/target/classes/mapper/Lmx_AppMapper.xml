@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lemonit.lemix.develop.server.dao.Lmx_AppMapper">
+
+    <!-- 增,创建应用-->
+    <insert id="add" parameterType="cn.lemonit.lemix.develop.server.entity.Lmx_App">
+        INSERT INTO lmx_app(app_id,app_key,app_name,app_introduce,app_create_time)
+        VALUES (NULL , #{app_key}, #{app_name}, #{app_introduce}, #{app_create_time});
+    </insert>
+
+    <!-- 查app_id是否存在-->
+    <select id="selectApp_Id" resultType="int">
+        select count(*) from lmx_app where app_id=#{id}
+    </select>
+    <!-- 删除应用-->
+    <delete id="delete" parameterType="cn.lemonit.lemix.develop.server.entity.Lmx_App">
+        delete from lmx_app where app_id=#{app_id}
+    </delete>
+
+    <!-- 修改-->
+    <update id="update" parameterType="cn.lemonit.lemix.develop.server.entity.Lmx_App">
+         update lmx_app set
+         app_key=#{app_key},
+         app_name=#{app_name},
+         app_introduce=#{app_introduce}
+         where app_id=#{app_id}
+    </update>
+
+    <!-- 通过app_key查找app_name-->
+    <select id="selectApp_name" parameterType="String" resultType="cn.lemonit.lemix.develop.server.entity.Lmx_App">
+          select app_name from lmx_app where app_key=#{app_key}
+    </select>
+
+</mapper>

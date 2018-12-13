@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lemonit.lemix.develop.server.dao.Lmx_VersionMapper">
+
+<!--    <resultMap type="Lmx_Version" id="lmx_VersionMap">
+        &lt;!&ndash; 主键映射 &ndash;&gt;
+        <id column="version_id" property="version_id"/>
+        &lt;!&ndash; 其他属性映射 &ndash;&gt;
+        <result column="version_key" property="version_key"/>
+        <result column="version_tag" property="version_tag"/>
+        <result column="update_time" property="update_time"/>
+        &lt;!&ndash; 包含的对象映射关系 &ndash;&gt;
+        &lt;!&ndash; property：类中对象的名字   javaType：该对象的类型，可以用简写类型 &ndash;&gt;
+        <association property="lmx_app" javaType="Lmx_App">
+            <id column="app_id" property="app_id"/>
+            <result column="app_key" property="app_key"/>
+        </association>
+    </resultMap>-->
+
+    <!-- 增-->
+    <insert id="add" parameterType="cn.lemonit.lemix.develop.server.entity.Lmx_Version" >
+        INSERT INTO lmx_version(version_id,app_id,version_key,app_key,version_tag,update_time)
+        VALUES (NULL ,#{app_id}, #{version_key}, #{app_key}, #{version_tag}, #{update_time});
+    </insert>
+    <!-- 查-->
+    <select id="list" resultType="cn.lemonit.lemix.develop.server.entity.Lmx_Version">
+        SELECT
+         version_id     AS version_id,
+         app_id         AS app_id,
+         version_key    AS version_key,
+         app_key        AS app_key,
+         version_tag    AS version_tag,
+         update_time    AS update_time
+        FROM lmx_version
+    </select>
+</mapper>
